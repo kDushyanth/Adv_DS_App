@@ -1,4 +1,5 @@
 //TrieNode structure
+//https://leetcode.com/problems/search-suggestions-system/
 class TrieNode{
     public:
         bool isEnd;
