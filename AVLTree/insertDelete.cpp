@@ -23,6 +23,11 @@ class Solution{
         root->height = 1+max(get_height(root->left),get_height(root->right));
         return root;
     }
+    /*
+    1. insert new element like in BST
+    2. get height and balance factor for ancestors (by recursion)
+    3. fix the first unbalanced node => the tree is now an AVL tree
+    */
     Node* insertToAVL(Node* node, int data)
     {
         if(node==NULL)return new Node(data);
@@ -51,6 +56,11 @@ class Solution{
         }
         
     }
+    /*
+    1. delete the element like in BST
+    2. get height and balance factor for ancestors (by recursion)
+    3. fix all unbalanced nodes unlike in insertion
+    */
     Node* deleteNode(Node* root, int data){
       if(root==NULL)return NULL;
       if(root->data < data)root->right = deleteNode(root->right,data);
@@ -84,8 +94,3 @@ class Solution{
       }
 }
 };
-/*
-  1. insert new element
-  2. get height and balance factor for ancestors (by recursion)
-  3. fix the first unbalanced node => the tree is now an AVL tree
-*/
