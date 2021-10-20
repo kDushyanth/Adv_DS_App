@@ -23,7 +23,6 @@ class Solution{
         root->height = 1+max(get_height(root->left),get_height(root->right));
         return root;
     }
-    /*You are required to complete this method */
     Node* insertToAVL(Node* node, int data)
     {
         if(node==NULL)return new Node(data);
@@ -52,6 +51,38 @@ class Solution{
         }
         
     }
+    Node* deleteNode(Node* root, int data){
+      if(root==NULL)return NULL;
+      if(root->data < data)root->right = deleteNode(root->right,data);
+      else if(root->data > data)root->left = deleteNode(root->left,data);
+      else{//root->data==data
+          if(root->left && root->right){//replace with inorder successor
+              Node *temp = root->right;
+              while(temp->left)temp = temp->left;
+              root->data = temp->data;
+              root->right = deleteNode(root->right,temp->data);
+          }else{
+              Node *temp = root->left? root->left:root->right;
+              delete root;
+              root = temp;
+          }
+      }
+      if(root==NULL)return root;
+      root->height = 1+ max(get_height(root->left),get_height(root->right));
+      int balance_factor = get_height(root->left) - get_height(root->right);
+      if(balance_factor>=-1 && balance_factor<=1)return root;//balanced node
+      if(balance_factor==-2){
+          Node *right = root->right;
+          int right_balance_factor = get_height(right->left) - get_height(right->right);
+          if(right_balance_factor==1)root->right = right_rotation(right);
+          return left_rotation(root);
+      }else{
+          Node *left = root->left;
+          int left_balance_factor = get_height(left->left) - get_height(left->right);
+          if(left_balance_factor==-1)root->left = left_rotation(left);
+          return right_rotation(root);
+      }
+}
 };
 /*
   1. insert new element
