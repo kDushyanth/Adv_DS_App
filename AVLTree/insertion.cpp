@@ -53,3 +53,8 @@ class Solution{
         
     }
 };
+/*
+  1. insert new element
+  2. get height and balance factor for ancestors (by recursion)
+  3. fix the first unbalanced node => the tree is now an AVL tree
+*/
