@@ -1,3 +1,14 @@
+struct Node
+{
+	int data, height;
+	Node *left, *right;
+	Node(int x)
+	{
+		data = x;
+		height = 1;
+		left = right = NULL;
+	}
+};
 class Solution{
   public:
     //height of current node
@@ -92,5 +103,5 @@ class Solution{
           if(left_balance_factor==-1)root->left = left_rotation(left);
           return right_rotation(root);
       }
-}
+  }
 };
