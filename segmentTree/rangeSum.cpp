@@ -69,7 +69,7 @@ int main(){
                 cout<<rangeSum(seg_tree,arr,n,0,n-1,l,r,0)<<endl;
                 break;
         case 1: cin>>idx>>val;//update idx with val
-                arr[idx] = val;
+                arr[idx] = val;//important
                 update(seg_tree,arr,n,idx,val-arr[idx],0,n-1,0);
                 break;
         default:cout<<"done";exit(0);//exited without error
